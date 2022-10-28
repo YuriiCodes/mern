@@ -24,6 +24,7 @@ function isLinkRelative(linkHref) {
   return linkHref[0] === '/';
 }
 
+// We need to have baseUrl, because some websites provide relative links, and we need to know the base url to resolve them.
 export function ParseHTML(rawHTML, baseUrl) {
   const root = parse(rawHTML);
 

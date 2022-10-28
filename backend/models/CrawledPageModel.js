@@ -5,11 +5,6 @@ const crawledPageSchema = new Schema({
     type: String,
     required: true
   },
-  //todo: add here the missing fields
-  parentQueryId: {
-    type: String,
-    default: "",
-  },
   title: {
     type: String,
     required: true

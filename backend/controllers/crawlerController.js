@@ -1,31 +1,26 @@
 import CrawledPage from '../models/CrawledPageModel';
 import {getHTMLAndBaseUrlFromUrl} from "../services/puppeteer";
-import {ParseHTML} from "../services/parseHTML";
+import {ParseHTML} from "../services/parse/parseHTML";
+import {bfsCrawl} from "../services/bfsCrawl";
 
 export  const crawl = async (req, res) => {
-  const {url} = req.body;
+  const {url, max_depth, max_pages} = req.body;
 
+  // Get an array of page info objects.
+  const crawledPagesInfo = await bfsCrawl(url, max_pages, max_depth);
 
-  // We need to fetch baseUrl, because some websites provide relative links, and we need to know the base url to resolve them.
-  const {html, baseUrl} = await getHTMLAndBaseUrlFromUrl(url);
-
-  const parsedData = ParseHTML(html, baseUrl);
-  const { title, description, h1, h2, linksArray} = parsedData;
-
-  try {
-    const saved = await new CrawledPage({
-      url,
-      title,
-      description,
-      h1,
-      h2,
-      links: linksArray,
-    }).save();
-    return res.send(saved);
+  let results = [];
+  for (const pageInfo of crawledPagesInfo) {
+    try {
+      const saved = await new CrawledPage(pageInfo).save();
+      results.push(saved);
+      console.log({saved});
+    }
+    catch( err) {
+      return res.status(500).send(err);
+    }
   }
-  catch( err) {
-    return res.status(500).send(err);
-  }
+  return res.send(results);
 };
 
 //load history using mongoose -> https://mongoosejs.com/
