@@ -9,11 +9,7 @@ import {Link as ReactRouterLink } from 'react-router-dom';
 
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-
-  },
-  menuLogo: {
+  menuHistoryBtn: {
     marginRight: theme.spacing(2),
   },
   title: {

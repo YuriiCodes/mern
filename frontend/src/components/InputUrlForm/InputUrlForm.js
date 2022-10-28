@@ -7,6 +7,7 @@ import TextField from '@material-ui/core/TextField';
 import agent from "../../agent/agent";
 import {ResponseTable} from "../ResponseTable/ResponseTable";
 import Typography from "@mui/material/Typography";
+import {CircularProgress} from "@material-ui/core";
 
 const validationSchema = yup.object({
   url: yup
@@ -27,6 +28,7 @@ const validationSchema = yup.object({
 export const InputUrlForm = () => {
   const [data, setData] = React.useState([]);
   const [isResultReady, setIsResultReady] = React.useState(false);
+  const [isLoading, setIsLoading] = React.useState(false);
   const formik = useFormik({
     initialValues: {
       url: 'https://keepshoppers.com/',
@@ -35,10 +37,12 @@ export const InputUrlForm = () => {
     },
     validationSchema: validationSchema,
     onSubmit: async (values) => {
+      setIsLoading(true);
       alert(JSON.stringify(values, null, 2));
       const res = await agent.Crawler.crawl(values.url, values.maxDepths, values.maxPages);
       setData(d => [...d, ...res]);
       setIsResultReady(true);
+      setIsLoading(false);
       console.log(res);
     },
   });
@@ -83,7 +87,7 @@ export const InputUrlForm = () => {
           Submit
         </Button>
       </form>
-
+      {isLoading && <CircularProgress />}
       {isResultReady &&
         <>
           <Typography variant="h4" component="div" sx={{ flexGrow: 1 }}>Results:</Typography>
