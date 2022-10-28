@@ -63,9 +63,12 @@ dotenv.config({ path: 'config.env' });
 app.use(mongoSanitize());
 
 // mongodb connection
+let mongoURL = `mongodb://${process.env.DB_USER}:${process.env.DB_PASSWORD}@${process.env.HOST}:${process.env.MONGO_PORT}/${process.env.DATABASE}`;
+console.log({mongoURL});
 mongoose
   .connect(
-    `mongodb://${process.env.DB_USER}:${process.env.DB_PASSWORD}@${process.env.HOST}:${process.env.MONGO_PORT}/${process.env.DATABASE}`,
+    mongoURL
+    ,
     {
       useCreateIndex: true,
       useNewUrlParser: true,

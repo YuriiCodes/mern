@@ -10,7 +10,22 @@ export  const crawl = async (req, res) => {
   const {html, baseUrl} = await getHTMLAndBaseUrlFromUrl(url);
 
   const parsedData = ParseHTML(html, baseUrl);
-  return res.send(parsedData);
+  const { title, description, h1, h2, linksArray} = parsedData;
+
+  try {
+    const saved = await new CrawledPage({
+      url,
+      title,
+      description,
+      h1,
+      h2,
+      links: linksArray,
+    }).save();
+    return res.send(saved);
+  }
+  catch( err) {
+    return res.status(500).send(err);
+  }
 };
 
 //load history using mongoose -> https://mongoosejs.com/
