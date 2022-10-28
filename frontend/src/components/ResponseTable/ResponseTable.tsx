@@ -108,6 +108,16 @@ export function ResponseTable(props: ResponseTableProps) {
               <TableCell align="right">{row.h2}</TableCell>
               <TableCell align="right">
                 {/*start*/}
+
+                <Box sx={{ width:400 }}>
+                  <Accordion>
+                    <AccordionSummary
+                      aria-controls="panel1a-content"
+                      id="panel1a-header"
+                    >
+                      <Typography>Click to see all links</Typography>
+                    </AccordionSummary>
+                    <AccordionDetails>
                       <Typography>
                         {row.links.map(link => {
                           return (
@@ -117,10 +127,16 @@ export function ResponseTable(props: ResponseTableProps) {
                           )
                         })}
                       </Typography>
+                    </AccordionDetails>
+                  </Accordion>
+                </Box>
                 {/*end*/}
               </TableCell>
               <TableCell align="right">{row.creationDate}</TableCell>
               <TableCell align="right">{row.updateDate}</TableCell>
+
+
+
             </TableRow>
           ))}
         </TableBody>

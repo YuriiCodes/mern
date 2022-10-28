@@ -14,9 +14,7 @@ const Home = () => {
     <div className='main'>
       <Header/>
       <Container>
-
         <InputUrlForm/>
-
       </Container>
     </div>
   );

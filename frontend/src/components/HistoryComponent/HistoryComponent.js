@@ -4,7 +4,7 @@ import agent from "../../agent/agent";
 
 import {Header} from "../Header/Header";
 import {Container} from "@material-ui/core";
-import {createData, ResponseTable} from "../ResponseTable/ResponseTable";
+import {ResponseTable} from "../ResponseTable/ResponseTable";
 
 
 const HistoryComponent = () => {

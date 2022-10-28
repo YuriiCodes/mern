@@ -6,6 +6,7 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import agent from "../../agent/agent";
 import {ResponseTable} from "../ResponseTable/ResponseTable";
+import Typography from "@mui/material/Typography";
 
 const validationSchema = yup.object({
   url: yup
@@ -24,6 +25,8 @@ const validationSchema = yup.object({
 });
 
 export const InputUrlForm = () => {
+  const [data, setData] = React.useState([]);
+  const [isResultReady, setIsResultReady] = React.useState(false);
   const formik = useFormik({
     initialValues: {
       url: 'https://keepshoppers.com/',
@@ -34,10 +37,13 @@ export const InputUrlForm = () => {
     onSubmit: async (values) => {
       alert(JSON.stringify(values, null, 2));
       const res = await agent.Crawler.crawl(values.url, values.maxDepths, values.maxPages);
+      setData(d => [...d, ...res]);
+      setIsResultReady(true);
       console.log(res);
     },
   });
 
+  console.log(data);
   return (
     <div>
       <form onSubmit={formik.handleSubmit}>
@@ -78,6 +84,12 @@ export const InputUrlForm = () => {
         </Button>
       </form>
 
+      {isResultReady &&
+        <>
+          <Typography variant="h4" component="div" sx={{ flexGrow: 1 }}>Results:</Typography>
+          <ResponseTable data={data}  withDate={false}/>
+      </>
+      }
     </div>
   );
 };
