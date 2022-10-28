@@ -1,6 +1,4 @@
 import CrawledPage from '../models/CrawledPageModel';
-import {getHTMLAndBaseUrlFromUrl} from "../services/puppeteer";
-import {ParseHTML} from "../services/parse/parseHTML";
 import {bfsCrawl} from "../services/bfsCrawl";
 
 export  const crawl = async (req, res) => {
