@@ -47,14 +47,6 @@ app.use(morgan('dev'));
 // records the response time for HTTP requests
 app.use(responseTime());
 
-// limit repeated requests to endpoints such as password reset
-app.use(
-  new rateLimit({
-    windowMs: 15 * 60 * 1000, // 15 minutes
-    max: 50, // limit each IP to 50 requests per windowMs
-    message: 'Too many requests from this IP, please try again in 15 minutes'
-  })
-);
 
 // loads environment variables from a config.env file into process.env
 dotenv.config({ path: 'config.env' });
