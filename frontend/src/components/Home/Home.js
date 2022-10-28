@@ -9,12 +9,12 @@ import {Container} from "@material-ui/core";
 
 const Home = () => {
 
-  React.useEffect(() => {
+  useEffect(() => {
     agent.Crawler.getHistory()
       .then(res => {
-
+        console.log(res);
       }).catch(e => {
-
+      console.log(e);
     });
   })
 
@@ -23,7 +23,6 @@ const Home = () => {
     <div className='main'>
       <Header/>
       <Container>
-
 
         <InputUrlForm/>
       </Container>

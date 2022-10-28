@@ -13,7 +13,7 @@ const requests = {
   del: (url: string) =>
     superagent.del(`${API}${url}`).use(httpHeaders).then(responseBody),
   get: (url: string) =>
-    superagent.get(`${API}${url}`).withCredentials().use(httpHeaders).then(responseBody),
+    superagent.get(`${API}${url}`).then(responseBody),
   put: (url: string, body: any) =>
     superagent.put(`${API}${url}`, body).use(httpHeaders).then(responseBody),
   post: (url: string, body: any) =>
