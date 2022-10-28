@@ -9,15 +9,6 @@ import {Container} from "@material-ui/core";
 
 const Home = () => {
 
-  useEffect(() => {
-    agent.Crawler.getHistory()
-      .then(res => {
-        console.log(res);
-      }).catch(e => {
-      console.log(e);
-    });
-  })
-
   return (
 
     <div className='main'>
@@ -25,6 +16,7 @@ const Home = () => {
       <Container>
 
         <InputUrlForm/>
+
       </Container>
     </div>
   );

@@ -4,6 +4,8 @@ import { useFormik } from 'formik';
 import * as yup from 'yup';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
+import agent from "../../agent/agent";
+import {ResponseTable} from "../ResponseTable/ResponseTable";
 
 const validationSchema = yup.object({
   url: yup
@@ -29,8 +31,10 @@ export const InputUrlForm = () => {
       maxPages: 1,
     },
     validationSchema: validationSchema,
-    onSubmit: (values) => {
+    onSubmit: async (values) => {
       alert(JSON.stringify(values, null, 2));
+      const res = await agent.Crawler.crawl(values.url, values.maxDepths, values.maxPages);
+      console.log(res);
     },
   });
 
@@ -73,6 +77,7 @@ export const InputUrlForm = () => {
           Submit
         </Button>
       </form>
+
     </div>
   );
 };

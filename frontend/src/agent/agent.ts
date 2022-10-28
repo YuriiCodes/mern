@@ -17,12 +17,12 @@ const requests = {
   put: (url: string, body: any) =>
     superagent.put(`${API}${url}`, body).use(httpHeaders).then(responseBody),
   post: (url: string, body: any) =>
-    superagent.post(`${API}${url}`, body).withCredentials().use(httpHeaders).then(responseBody),
+    superagent.post(`${API}${url}`, body).then(responseBody),
 };
 
 const Crawler = {
-  crawl: (url: string) =>
-    requests.post('/crawler/crawl', {url}),
+  crawl: (url: string, max_depth: number, max_pages: number) =>
+    requests.post('/crawler/crawl', {url, max_depth, max_pages}),
   getHistory: () =>
     requests.get(`/crawler/history`),
 };

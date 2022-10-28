@@ -42,7 +42,7 @@ export function Header() {
         <Typography variant="h6" noWrap>
           <Box fontWeight="fontWeightBold" m={1}>
             <span className={classes.menuLogo}>
-              <Typography variant="outlined" className={classes.link} component={ReactRouterLink} to="/">
+              <Typography variant="h6" className={classes.link} component={ReactRouterLink} to="/">
               Mini Crawler
             </Typography></span>
             <Button variant="outlined" className={classes.link} component={ReactRouterLink} to="/history">
