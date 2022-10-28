@@ -7,56 +7,84 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 
+import Accordion from '@mui/material/Accordion';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import AccordionDetails from '@mui/material/AccordionDetails';
+import Typography from '@mui/material/Typography';
+import { Box } from '@mui/material';
+
+
+
 export function createData(
-  id: string,
+  _id: string,
   url: string,
   title: string,
   description: string,
   h1: string,
   h2: string,
-  createdAt: string,
-  updatedAt: string,
+  creationDate: string,
+  updateDate: string,
   links: string[],
 ) {
   return {
-    id,
+    _id,
     url,
     title,
     description,
     h1,
     h2,
-    createdAt,
-    updatedAt,
+    creationDate,
+    updateDate,
     links,
   };
 }
 
-// const rows = [
-//   // createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-//   createData("635baf62ffd2b53f58901da7", "https://keepshoppers.com/",
-//     "KeepShoppers - Build your Shopify business.", "KeepShoppers is a supportive community that provides the resources, knowledge, and the answers you need to succeed in eCommerce.",
-//     "Succeed With Shopify", "Find the information you need", "2022-10-28T10:30:58.321Z",
-//   "2022-10-28T10:30:58.321Z", ["https://keepshoppers.com/category/dropshipping", "https://keepshoppers.com/forum"]
-// )
-// ];
+interface row {
+  _id: string;
+  url: string;
+  title: string;
+  description: string;
+  h1: string;
+  h2: string;
+  creationDate: string;
+  updateDate: string;
+  links: string[];
+}
 
 interface ResponseTableProps {
   withDate: boolean;
-  rows: any[];
+  data: row[];
 }
+
 export function ResponseTable(props: ResponseTableProps) {
-  console.log({props});
+  // const rows = [
+  //   // createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
+  //   createData("635baf62ffd2b53f58901da7", "https://keepshoppers.com/",
+  //     "KeepShoppers - Build your Shopify business.", "KeepShoppers is a supportive community that provides the resources, knowledge, and the answers you need to succeed in eCommerce.",
+  //     "Succeed With Shopify", "Find the information you need", "2022-10-28T10:30:58.321Z",
+  //     "2022-10-28T10:30:58.321Z", ["https://keepshoppers.com/category/dropshipping", "https://keepshoppers.com/forum"]
+  //   )
+  // ];
+
+
+  let rows: row[] = [];
+  props.data.forEach((item: any) => {
+    rows.push(createData(item._id, item.url, item.title, item.description, item.h1, item.h2, item.creationDate, item.updateDate, item.links));
+  });
+  debugger;
+  console.log({rows})
+
   return (
     <TableContainer component={Paper}>
       <Table sx={{minWidth: 650}} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell>Url</TableCell>
             <TableCell align="right">Url</TableCell>
             <TableCell align="right">Title</TableCell>
             <TableCell align="right">Description</TableCell>
             <TableCell align="right">H1</TableCell>
             <TableCell align="right">H2</TableCell>
+            <TableCell align="right">Links</TableCell>
             {props.withDate &&
               <>
                 <TableCell align="right">Created at</TableCell>
@@ -64,37 +92,35 @@ export function ResponseTable(props: ResponseTableProps) {
               </>
             }
 
-            <TableCell align="right">Links</TableCell>
+
           </TableRow>
         </TableHead>
         <TableBody>
-          {props.rows.map((row) => (
+          {rows.map((row) => (
             <TableRow
-              key={row.id}
+              key={row._id}
               sx={{'&:last-child td, &:last-child th': {border: 0}}}
             >
-              <TableCell component="th" scope="row">
-                {row.url}
-              </TableCell>
               <TableCell align="right">{row.url}</TableCell>
               <TableCell align="right">{row.title}</TableCell>
               <TableCell align="right">{row.description}</TableCell>
               <TableCell align="right">{row.h1}</TableCell>
               <TableCell align="right">{row.h2}</TableCell>
-              {props.withDate &&
-                <>
-                  <TableCell align="right">{row.createdAt}</TableCell>
-                  <TableCell align="right">{row.updatedAt}</TableCell>
-                </>
-              }
-              {/*// @ts-ignore*/}
-              <TableCell align="right">{props.rows.links.map(link => {
-                return (
-                  <ul key={link}>
-                    <li>{link}</li>
-                  </ul>
-                )
-              })}</TableCell>
+              <TableCell align="right">
+                {/*start*/}
+                      <Typography>
+                        {row.links.map(link => {
+                          return (
+                            <Box>
+                              <a href={link} target={"_blank"} key={row._id}>{link}</a>
+                            </Box>
+                          )
+                        })}
+                      </Typography>
+                {/*end*/}
+              </TableCell>
+              <TableCell align="right">{row.creationDate}</TableCell>
+              <TableCell align="right">{row.updateDate}</TableCell>
             </TableRow>
           ))}
         </TableBody>
