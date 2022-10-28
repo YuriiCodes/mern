@@ -3,8 +3,8 @@ import './Home.scss';
 import agent from "../../agent/agent";
 
 import {InputUrlForm} from "../InputUrlForm/InputUrlForm";
-
-
+import {Header} from "../Header/Header";
+import {Container} from "@material-ui/core";
 
 
 const Home = () => {
@@ -19,11 +19,14 @@ const Home = () => {
   })
 
   return (
+
     <div className='main'>
-      <h1>Start Here</h1>
+      <Header/>
+      <Container>
 
-      <InputUrlForm />
 
+        <InputUrlForm/>
+      </Container>
     </div>
   );
 };
