@@ -5,6 +5,15 @@ import {bfsCrawl} from "../services/bfsCrawl";
 
 export  const crawl = async (req, res) => {
   const {url, max_depth, max_pages} = req.body;
+  if (!url || !max_depth || !max_pages) {
+    return res.status(400).json({error: 'Missing required fields'});
+  }
+  if (max_depth < 1 || max_depth > 10) {
+    return res.status(400).json({error: 'max_depth must be between 1 and 10'});
+  }
+  if (max_depth === 1 && max_pages > 1) {
+    return res.status(400).json({error: 'max_pages must be 1 if max_depth is 1'});
+  }
 
   // Get an array of page info objects.
   const crawledPagesInfo = await bfsCrawl(url, max_pages, max_depth);
