@@ -17,7 +17,7 @@ To install all the packages, please run (at the root folder):
 
 - yarn install
 
-## Backend (Node.js | Express | MongoDB)
+## Backend (Node.js | Express | MongoDB | Puppeteer)
 
 - yarn start
 - open [http://localhost:3000](http://localhost:3000) to view it in the browser.
