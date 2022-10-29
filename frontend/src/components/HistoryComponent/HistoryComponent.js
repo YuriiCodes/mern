@@ -19,15 +19,13 @@ const HistoryComponent = () => {
     });
   }, []);
 
-  return (
-    <Container>
+  return (<Container>
       <Header/>
 
       <div className="content">
         <ResponseTable data={data} withDate={true}/>
       </div>
-    </Container>
-  );
+    </Container>);
 };
 
 export default HistoryComponent;

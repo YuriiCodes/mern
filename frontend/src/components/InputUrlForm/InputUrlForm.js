@@ -8,6 +8,7 @@ import agent from "../../agent/agent";
 import {ResponseTable} from "../ResponseTable/ResponseTable";
 import Typography from "@mui/material/Typography";
 import {CircularProgress} from "@material-ui/core";
+import { makeStyles } from '@material-ui/core/styles';
 
 const validationSchema = yup.object({
   url: yup
@@ -25,7 +26,15 @@ const validationSchema = yup.object({
     .required('maxPages is required'),
 });
 
+
+const useStyles = makeStyles((theme) => ({
+  submitBtn: {
+    marginTop: '20px',
+  }
+}));
+
 export const InputUrlForm = () => {
+  const classes = useStyles();
   const [data, setData] = React.useState([]);
   const [isResultReady, setIsResultReady] = React.useState(false);
   const [isLoading, setIsLoading] = React.useState(false);
@@ -83,7 +92,7 @@ export const InputUrlForm = () => {
           error={formik.touched.maxPages && Boolean(formik.errors.maxPages)}
           helperText={formik.touched.maxPages && formik.errors.maxPages}
         />
-        <Button color="primary" variant="contained" fullWidth type="submit">
+        <Button color="primary" className={classes.submitBtn} variant="contained" fullWidth type="submit">
           Submit
         </Button>
       </form>
