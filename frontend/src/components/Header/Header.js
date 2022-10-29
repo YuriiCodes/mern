@@ -9,14 +9,17 @@ import {Link as ReactRouterLink } from 'react-router-dom';
 
 
 const useStyles = makeStyles((theme) => ({
-  menuHistoryBtn: {
-    marginRight: theme.spacing(2),
+  menuLogo: {
+    marginRight: '85%',
   },
   title: {
     flexGrow: 1,
   },
   appBar: {
     marginBottom: theme.spacing(3),
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'space-between',
   },
   link: {
     color: 'white',
@@ -34,7 +37,6 @@ export function Header() {
   const classes = useStyles();
   return (
     <AppBar position="static" className={classes.appBar}>
-      <Container fixed>
         <Typography variant="h6" noWrap>
           <Box fontWeight="fontWeightBold" m={1}>
             <span className={classes.menuLogo}>
@@ -49,7 +51,7 @@ export function Header() {
         </Typography>
 
 
-      </Container>
+
     </AppBar>
   );
 }

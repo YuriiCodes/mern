@@ -20,46 +20,9 @@ const HistoryComponent = () => {
   }, []);
 
   return (
-    <div className='main'>
+    <div>
       <Header/>
-      <Container>
-
         <ResponseTable data={data} withDate={true}/>
-        {/*{data.map((item, index) => {*/}
-        {/*  return (*/}
-        {/*  // render basic html table, based on data*/}
-        {/*  <table key={index}>*/}
-        {/*    <tr>*/}
-        {/*      <th>Url</th>*/}
-        {/*      <th>title</th>*/}
-        {/*      <th>Description</th>*/}
-        {/*      <th>H1</th>*/}
-        {/*      <th>H2</th>*/}
-        {/*      <th>Links</th>*/}
-        {/*      <th>Created at</th>*/}
-        {/*      <th>Updated at</th>*/}
-        {/*    </tr>*/}
-        {/*    <tr>*/}
-        {/*      <td>{item.url}</td>*/}
-        {/*      <td>{item.title}</td>*/}
-        {/*      <td>{item.description}</td>*/}
-        {/*      <td>{item.h1}</td>*/}
-        {/*      <td>{item.h2}</td>*/}
-        {/*      <td><ul>{item.links.map(item => {*/}
-        {/*        return (*/}
-        {/*          <>*/}
-        {/*            <li>{item}</li>*/}
-        {/*          </>*/}
-        {/*        )*/}
-        {/*      })}</ul></td>*/}
-        {/*      <td>{item.createdAt}</td>*/}
-        {/*      <td>{item.updatedAt}</td>*/}
-        {/*    </tr>*/}
-        {/*  </table>*/}
-        {/*  )*/}
-        {/*})}*/}
-
-      </Container>
     </div>
   );
 };

@@ -57,25 +57,14 @@ interface ResponseTableProps {
 }
 
 export function ResponseTable(props: ResponseTableProps) {
-  // const rows = [
-  //   // createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-  //   createData("635baf62ffd2b53f58901da7", "https://keepshoppers.com/",
-  //     "KeepShoppers - Build your Shopify business.", "KeepShoppers is a supportive community that provides the resources, knowledge, and the answers you need to succeed in eCommerce.",
-  //     "Succeed With Shopify", "Find the information you need", "2022-10-28T10:30:58.321Z",
-  //     "2022-10-28T10:30:58.321Z", ["https://keepshoppers.com/category/dropshipping", "https://keepshoppers.com/forum"]
-  //   )
-  // ];
-
 
   let rows: row[] = [];
   props.data.forEach((item: any) => {
     rows.push(createData(item._id, item.url, item.title, item.description, item.h1, item.h2, item.creationDate, item.updateDate, item.links));
   });
-  debugger;
   console.log({rows})
 
   return (
-    <TableContainer component={Paper}>
       <Table sx={{minWidth: 650}} aria-label="simple table">
         <TableHead>
           <TableRow>
@@ -134,13 +123,10 @@ export function ResponseTable(props: ResponseTableProps) {
               </TableCell>
               <TableCell align="right">{row.creationDate}</TableCell>
               <TableCell align="right">{row.updateDate}</TableCell>
-
-
-
             </TableRow>
           ))}
         </TableBody>
       </Table>
-    </TableContainer>
+
   );
 }

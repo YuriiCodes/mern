@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import '../src/style.scss';
 import Router from './Router';
 
 ReactDOM.render(
