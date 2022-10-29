@@ -121,8 +121,11 @@ export function ResponseTable(props: ResponseTableProps) {
                 </Box>
                 {/*end*/}
               </TableCell>
-              <TableCell align="right">{row.creationDate}</TableCell>
-              <TableCell align="right">{row.updateDate}</TableCell>
+              {props.withDate && <>
+                <TableCell align="right">{row.creationDate}</TableCell>
+                <TableCell align="right">{row.updateDate}</TableCell>
+              </>}
+
             </TableRow>
           ))}
         </TableBody>
