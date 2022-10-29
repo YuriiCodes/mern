@@ -47,7 +47,6 @@ export const InputUrlForm = () => {
     validationSchema: validationSchema,
     onSubmit: async (values) => {
       setIsLoading(true);
-      alert(JSON.stringify(values, null, 2));
       const res = await agent.Crawler.crawl(values.url, values.maxDepths, values.maxPages);
       setData(d => [...d, ...res]);
       setIsResultReady(true);
@@ -96,10 +95,10 @@ export const InputUrlForm = () => {
           Submit
         </Button>
       </form>
-      {isLoading && <CircularProgress />}
+      {isLoading && <CircularProgress/>}
       {isResultReady &&
         <>
-          <Typography variant="h4" component="div" sx={{ flexGrow: 1 }}>Results:</Typography>
+          <Typography variant="h4"  sx={{ flexGrow: 1, marginTop: '1em', marginBottom: '1em'}}>Results:</Typography>
           <ResponseTable data={data}  withDate={false}/>
       </>
       }
