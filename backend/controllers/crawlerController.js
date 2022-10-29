@@ -3,6 +3,8 @@ import {bfsCrawl} from "../services/bfsCrawl";
 
 export  const crawl = async (req, res) => {
   const {url, max_depth, max_pages} = req.body;
+
+  // Data validation
   if (!url || !max_depth || !max_pages) {
     return res.status(400).json({error: 'Missing required fields'});
   }
@@ -18,6 +20,7 @@ export  const crawl = async (req, res) => {
 
   let results = [];
   for (const pageInfo of crawledPagesInfo) {
+    // Save all recursive crawl results in the DB
     try {
       const saved = await new CrawledPage(pageInfo).save();
       results.push(saved);
