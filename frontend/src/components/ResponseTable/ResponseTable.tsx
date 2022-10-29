@@ -65,6 +65,7 @@ export function ResponseTable(props: ResponseTableProps) {
   console.log({rows})
 
   return (
+    <TableContainer>
       <Table sx={{minWidth: 650}} aria-label="simple table">
         <TableHead>
           <TableRow>
@@ -127,6 +128,6 @@ export function ResponseTable(props: ResponseTableProps) {
           ))}
         </TableBody>
       </Table>
-
+    </TableContainer>
   );
 }

@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
   },
   appBar: {
-    marginBottom: theme.spacing(3),
+
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'space-between',
@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
 export function Header() {
   const classes = useStyles();
   return (
-    <AppBar position="static" className={classes.appBar}>
+    <AppBar position="fixed" className={classes.appBar}>
         <Typography variant="h6" noWrap>
           <Box fontWeight="fontWeightBold" m={1}>
             <span className={classes.menuLogo}>
